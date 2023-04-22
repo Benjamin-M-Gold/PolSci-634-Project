@@ -23,14 +23,10 @@ set.vertex.attribute(net2, "State", legislatorData2008$state)
 set.vertex.attribute(net2, "Endorsement", legislatorData2008$Endorsement)
 set.vertex.attribute(net2, "Ideology", legislatorData2008$Ideology)
 
-plot(net2, vertex.col = "Party", displaylabels = F)
+#plot(net2, vertex.col = "Party", displaylabels = F)
 
-flomodel <- ergm(net2 ~ edges + nodecov('Ideology')) # Estimate the theta coefficients
-summary(flomodel)
+without <- ergm(net2 ~ edges + nodecov('Ideology') + nodematch("Party") + nodematch("State")) # Estimate the theta coefficients
+summary(without)
 
-
-## Useless code right now
-V(network)$color <- rgb(1,0,0,.5)  #Define the color of Republicans
-V(network)$color[which(V(network)$party=="D")] <- rgb(0,0,1,.5)  #...of Democrats
-V(network)$color[which(V(network)$party=="I")] <- rgb(0,1,0,.5)  #...of Independents
-plot(network, vertex.label = NA, vertex.color = V(network)$color, vertex.frame.color = NA, vertex.size = 3)
+with <- ergm(net2 ~ edges + nodecov('Ideology') + nodematch("Party") + nodematch("State") + nodematch('Endorsement')) # Estimate the theta coefficients
+summary(with)
