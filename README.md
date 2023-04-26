@@ -8,4 +8,4 @@ It accesses data from the 200electiondata.csv file, which contains all the legis
 
 The FinalProjectTheory.py file is the code for my final project theory.
 
-The DataTrial1.csv contains the output data of this file
+The TheoreticalData.csv contains the output data of this file
