@@ -25,8 +25,8 @@ set.vertex.attribute(net2, "Ideology", legislatorData2008$Ideology)
 
 #plot(net2, vertex.col = "Party", displaylabels = F)
 
-without <- ergm(net2 ~ edges + nodecov('Ideology') + nodematch("Party") + nodematch("State")) # Estimate the theta coefficients
-summary(without)
+with_endorsement_and_party <- ergm(net2 ~ edges + nodecov('Ideology') + nodematch("Party") + nodematch("State") + nodematch('Endorsement')) # Estimate the theta coefficients
+summary(with_endorsement_and_party)
 
-with <- ergm(net2 ~ edges + nodecov('Ideology') + nodematch("Party") + nodematch("State") + nodematch('Endorsement')) # Estimate the theta coefficients
-summary(with)
+without_party_with_endorsement <- ergm(net2 ~ edges + nodecov('Ideology') + nodematch("Endorsement") + nodematch("State")) # Estimate the theta coefficients
+summary(without_party_with_endorsement)
